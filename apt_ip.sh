@@ -54,7 +54,7 @@ conn ikev2-vpn
     right=%any
     rightid=%any
     rightauth=eap-mschapv2
-    rightsourceip=10.10.10.0/24,fd01:2345:6789:10::/64
+    rightsourceip=19.89.64.0/24,fd01:2345:6789:10::/64
     rightdns=8.8.8.8,8.8.4.4,2001:4860:4860::8888, 2001:4860:4860::8844
     rightsendcert=never
     eap_identity=%identity
@@ -77,9 +77,9 @@ iptables -A INPUT -p esp -j ACCEPT
 iptables -A INPUT -p udp --dport 500 -j ACCEPT
 iptables -A INPUT -p udp --dport 4500 -j ACCEPT
 iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
-iptables -A FORWARD -s 10.10.10.0/24 -m policy --dir in --pol ipsec -j ACCEPT
-iptables -A FORWARD -d 10.10.10.0/24 -m policy --dir out --pol ipsec -j ACCEPT
-iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o $interface -j MASQUERADE
+iptables -A FORWARD -s 19.89.64.0/24 -m policy --dir in --pol ipsec -j ACCEPT
+iptables -A FORWARD -d 19.89.64.0/24 -m policy --dir out --pol ipsec -j ACCEPT
+iptables -t nat -A POSTROUTING -s 19.89.64.0/24 -o $interface -j MASQUERADE
 ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 ip6tables -A INPUT -p esp -j ACCEPT
 ip6tables -A INPUT -p udp --dport 500 -j ACCEPT
